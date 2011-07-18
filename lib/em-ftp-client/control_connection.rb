@@ -209,7 +209,8 @@ module EventMachine
       # Calls out with the result to the callback given to pwd
       def pwd_response(response)
         @responder = nil
-        call_callback(response.body)
+        wd = response.body.match(/"([\w\/\-_\.]*)"$/)[1]
+        call_callback(wd)
       end
 
       # Called when a response for the PASV verb is received
